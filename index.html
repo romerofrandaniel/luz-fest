@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<!-- saved from url=(0062)file:///C:/Users/Francisco/Downloads/ai_studio_code%20(3).html -->
-<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIS 15 - Luz Fest</title>
-    <link rel="stylesheet" href="./MIS 15 - Luz FestCopia_files/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
-        /* General Body Styling */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0; /* Light gray background */
+            background-color: #f0f0f0;
             color: #333;
             display: flex;
             flex-direction: column;
@@ -19,28 +18,23 @@
             line-height: 1.6;
         }
 
-        /* Root-level leaf pattern background */
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23e0e0e0" opacity="0.4" d="M30 40 L50 20 L70 40 Q50 60 30 40Z" /><path fill="%23e0e0e0" opacity="0.4" d="M70 60 L50 80 L30 60 Q50 40 70 60Z" /></svg>'); /* Simple leaf pattern, light gray */
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23e0e0e0" opacity="0.4" d="M30 40 L50 20 L70 40 Q50 60 30 40Z" /><path fill="%23e0e0e0" opacity="0.4" d="M70 60 L50 80 L30 60 Q50 40 70 60Z" /></svg>');
             background-size: 80px;
-            pointer-events: none; /* Allows clicks/interaction with elements below */
+            pointer-events: none;
             z-index: -1;
         }
 
-        /* Hero Section (First Fold) */
         .hero-section {
             width: 100%;
-            height: 85vh; /* Takes most of the viewport height */
-            /* === NUEVA IMAGEN DE FONDO === */
+            height: 85vh;
             background-image: url('https://vestidos15.com/wp-content/uploads/2023/11/catalogodeprecios-07-scaled.jpg');
             background-size: cover;
-            background-position: center center; /* Centrar la imagen */
+            background-position: center center;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -48,25 +42,23 @@
             color: #fff;
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
             position: relative;
-            overflow: hidden; /* To contain background pseudo-element */
+            overflow: hidden;
         }
 
         .hero-section::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
-            filter: brightness(0.9); /* Ajustar brillo para que la imagen se vea más, pero el texto siga legible */
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.4);
             z-index: 1;
         }
 
         .hero-content {
             position: relative;
-            z-index: 2; /* Ensure content is above overlay */
+            z-index: 2;
             text-align: center;
+            padding: 0 10px;
         }
 
         .hero-content p:first-of-type {
@@ -76,10 +68,10 @@
         }
         .hero-content h1 {
             font-family: 'Georgia', serif;
-            font-size: 4em;
+            font-size: 3em;
             margin: 0;
             font-weight: normal;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
         }
         .hero-content p:last-of-type {
             margin-top: 10px;
@@ -87,93 +79,53 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
-        /* Countdown inside Hero */
-        .hero-countdown {
+        /* iframe centrado y responsivo */
+        .iframe-container {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
-            background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
-            padding: 15px 30px;
-            border-radius: 10px;
-            backdrop-filter: blur(5px); /* Frosted glass effect */
-        }
-        .hero-countdown-item {
-            text-align: center;
-            color: #fff;
-        }
-        .hero-countdown-item span {
-            display: block;
-            font-size: 2.5em;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .hero-countdown-item small {
-            font-size: 1em;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: rgba(255, 255, 255, 0.8);
+            align-items: center;
+            width: 100%;
+            margin-top: 30px;
         }
 
-        /* Content Sections */
+        .iframe-container iframe {
+            width: 90%;
+            max-width: 500px;
+            height: 125px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        /* Secciones generales */
         .section {
             width: 100%;
-            max-width: 900px; /* Wider content area */
+            max-width: 900px;
             text-align: center;
-            margin: 0 auto 50px auto; /* Centered with bottom margin */
+            margin: 0 auto 50px auto;
             padding: 40px 20px;
-            background-color: #fff; /* White background for main content blocks */
+            background-color: #fff;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05); /* Softer, larger shadow */
-        }
-
-        /* Two-column layout for some sections */
-        .two-column-layout {
-            display: grid;
-            grid-template-columns: 1fr; /* Single column on small screens */
-            gap: 40px;
-            align-items: center;
-        }
-        @media (min-width: 768px) {
-            .two-column-layout {
-                grid-template-columns: 1fr 1fr; /* Two columns on larger screens */
-                text-align: left; /* Align text to left in columns */
-            }
-            .two-column-layout .section-content {
-                padding-right: 20px; /* Adjust padding for visual balance */
-            }
-            .two-column-layout .section-image {
-                text-align: right; /* Align images to right in columns */
-            }
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
 
         .section-background-gray {
-            background-color: #f7f7f7; /* Light gray background for some sections */
+            background-color: #f7f7f7;
         }
 
         .section-title {
-            font-size: 2.2em;
+            font-size: 2em;
             color: #555;
             margin-bottom: 20px;
-            font-weight: 400;
+            font-weight: 500;
         }
+
         .section-text {
             font-size: 1.05em;
             color: #666;
             margin-bottom: 10px;
         }
 
-        /* Leaf Icon Styling */
-        .leaf-icon {
-            margin: 0 auto 20px auto; /* Centered, with bottom margin */
-            width: 35px;
-            height: 35px;
-            background-color: #8B8378;
-            -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347.3 41.5 320 53.6 304.7 80.3L256 160l-48.7-79.7c-15.3-26.7-42.6-38.8-71.3-33.5C50.5 45.1 0 104.7 0 174.6v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>') no-repeat center / contain;
-            mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347.3 41.5 320 53.6 304.7 80.3L256 160l-48.7-79.7c-15.3-26.7-42.6-38.8-71.3-33.5C50.5 45.1 0 104.7 0 174.6v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>') no-repeat center / contain;
-        }
-
-        /* Button Styling */
         .button {
             display: inline-block;
             padding: 12px 30px;
@@ -184,7 +136,7 @@
             color: #8B8378;
             font-weight: bold;
             font-size: 1em;
-            transition: background-color 0.3s, color 0.3s;
+            transition: 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
             background-color: transparent;
@@ -193,39 +145,30 @@
             background-color: #8B8378;
             color: #fff;
         }
-        .button.dark {
-            background-color: #8B8378;
-            color: #fff;
-            border-color: #8B8378;
-        }
-        .button.dark:hover {
-            background-color: #6a5f57;
-            border-color: #6a5f57;
-        }
 
-        /* Mi álbum Gallery */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
             margin-top: 30px;
         }
+
         .gallery img {
             width: 100%;
-            height: auto;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        /* Social Icons Styling */
         .social-icons {
             display: flex;
             justify-content: center;
             gap: 25px;
             margin-top: 30px;
+            flex-wrap: wrap;
         }
+
         .social-icons a {
-            font-size: 2.8em;
+            font-size: 2em;
             color: #8B8378;
             text-decoration: none;
             transition: color 0.3s;
@@ -234,7 +177,6 @@
             color: #555;
         }
 
-        /* Footer */
         .footer {
             width: 100%;
             max-width: 900px;
@@ -246,26 +188,11 @@
             border-radius: 12px;
             box-shadow: 0 -2px 10px rgba(0,0,0,0.03);
         }
-        .footer h2.italic {
-            font-style: italic;
-            font-size: 2.5em;
-            color: #555;
-            margin-bottom: 20px;
-        }
-        .footer .icon-placeholder { /* For the downward arrow */
-            font-size: 3em;
-            color: #8B8378;
-            margin: 20px 0;
-            display: block;
-        }
-        .footer p {
-            font-size: 1em;
-            color: #777;
-        }
-        .footer .small-text {
-            font-size: 0.85em;
-            margin-top: 20px;
-            color: #999;
+
+        @media (max-width: 600px) {
+            .hero-content h1 {
+                font-size: 2.2em;
+            }
         }
     </style>
 </head>
@@ -275,138 +202,58 @@
         <div class="hero-content">
             <p>MIS 15</p>
             <h1>Luz Fest</h1>
-            <p>29. 11. 2025</p>
-          <div class="" style="text-align:center;">
-    <iframe 
-        src="https://policiadigitalchaco.com.ar/Prueba/counter" 
-        style="width:145%; height:125px; border:none; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.2);"
-        scrolling="no">
-    </iframe>
-</div>
-
+            <p>29.11.2025</p>
+            <div class="iframe-container">
+                <iframe 
+                    src="https://policiadigitalchaco.com.ar/Prueba/counter"
+                    scrolling="no">
+                </iframe>
+            </div>
         </div>
     </div>
 
     <div class="section">
-        <div class="leaf-icon"></div>
         <h2 class="section-title">Celebración</h2>
         <p class="section-text">La fiesta será el día viernes 29 de noviembre.</p>
-        <p class="section-text">Los espero a las 21:00 hs en 'salon gauna',</p>
-        <p class="section-text">salón ubicado en Pio XII Puerto Vilelas</p>
-        <a href="https://www.google.com/maps/place/Salon+De+Fiesta+Gauna/@-27.5091156,-58.9386445,20z/data=!4m6!3m5!1s0x9445734d6cbae71b:0x5d03134ab55ff734!8m2!3d-27.5091156!4d-58.9381709!16s%2Fg%2F11g4g_9td1?entry=ttu&amp;g_ep=EgoyMDI1MTAxOS4wIKXMDSoASAFQAw%3D%3D" class="button">VER MAPA</a>
+        <p class="section-text">Los espero a las 21:00 hs en "Salón Gauna",</p>
+        <p class="section-text">ubicado en Pio XII, Puerto Vilelas.</p>
+        <a href="https://www.google.com/maps/place/Salon+De+Fiesta+Gauna/" class="button">VER MAPA</a>
     </div>
 
     <div class="section section-background-gray">
-        <div class="leaf-icon"></div>
         <h2 class="section-title">Dress Code</h2>
-        <p class="section-text">El código de vestimenta del evento será Formal, manteniendo el equilibrio entre la elegancia y el confort, evita llevar ropa de color blanco y rosa</p>
-        <a href="https://ar.pinterest.com/search/pins/?q=dress%20code%20fiesta%20de%2015&rs=typed" class="button">EJEMPLOS</a>
+        <p class="section-text">El código de vestimenta será formal, evita el color blanco y rosa.</p>
+        <a href="https://ar.pinterest.com/search/pins/?q=dress%20code%20fiesta%20de%2015" class="button">EJEMPLOS</a>
     </div>
 
     <div class="section">
         <h2 class="section-title">Confirmar Asistencia</h2>
         <p class="section-text">Confirmar antes del 10 de noviembre</p>
-        <a href="https://wa.me/5493624690820?text=Hola!%20Por%20favor%20confirma%20tu%20asistencia:%0A%0A1-%20Sí,%20allí%20estaré%20🎉%0A2-%20No%20puedo,%20lo%20siento%20😔" 
-   class="button" 
-   target="_blank">
-   CONFIRMAR
-</a>
-
+        <a href="https://wa.me/5493624690820?text=Hola!%20Confirmo%20mi%20asistencia%20a%20Luz%20Fest%20🎉" class="button" target="_blank">
+            CONFIRMAR
+        </a>
     </div>
 
     <div class="section section-background-gray">
-        <div class="leaf-icon"></div>
         <h2 class="section-title">Mi álbum</h2>
         <div class="gallery">
-            <img src="https://assets-c.gitlab-static.net/uploads/-/system/user/10363290/a6e9a0f0d23588ef11b15103c62f275e/image-2.png" alt="Álbum imagen 1">
-            <img src="https://assets-c.gitlab-static.net/uploads/-/system/user/10363290/d6a3f12411e389e72844111394f41445/image-3.png" alt="Álbum imagen 2">
-            <img src="https://assets-c.gitlab-static.net/uploads/-/system/user/10363290/49f25fb3200b3e70d4f58c8942008cfc/image-4.png" alt="Álbum imagen 3">
+            <img src="https://assets-c.gitlab-static.net/uploads/-/system/user/10363290/a6e9a0f0d23588ef11b15103c62f275e/image-2.png">
+            <img src="https://assets-c.gitlab-static.net/uploads/-/system/user/10363290/d6a3f12411e389e72844111394f41445/image-3.png">
+            <img src="https://assets-c.gitlab-static.net/uploads/-/system/user/10363290/49f25fb3200b3e70d4f58c8942008cfc/image-4.png">
         </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">Playlist</h2>
-        <p class="section-text">Estas son algunas de mis canciones y artistas que no pueden faltar en una fiesta</p>
-        <a href="https://open.spotify.com/intl-es/track/30oFPqLSBk2zDgSinLYD2A" class="button">SUGERIR MÚSICA</a>
-    </div>
-
-    <div class="section section-background-gray">
-        <div class="leaf-icon"></div>
-        <h2 class="section-title">Regalo</h2>
-        <p class="section-text">Tu presencia es lo más importante, pero si quieres puedes hacerme un regalo de cumpleaños.</p>
-        <p class="section-text">Haz clic para ver los datos y hacer una transferencia</p>
-        <a href="mailto:?subject=Datos%20para%20transferencia&body=Alias:%20luz.fest.mp%0ANombre:%20Luz%20Maciel" 
-   onclick="this.blur(); alert('Alias: luz.fest.mp\nTitular: Luz Fernández'); return false;" 
-   class="button">
-   VER DATOS
-</a>
-
     </div>
 
     <div class="section">
         <h2 class="section-title">#Cumple15LuzFest</h2>
-        <p class="section-text">Usa el hashtag de mi fiesta para subir tus fotos y videos</p>
-        <a href="https://www.instagram.com/" 
-   class="button" 
-   target="_blank">
-   VER EN INSTAGRAM
-</a>
-
-    </div>
-
-    <div class="section section-background-gray">
-        <h2 class="section-title">Seguime en mis redes</h2>
-        <div class="social-icons">
-            <a href="file:///C:/Users/Francisco/Downloads/ai_studio_code%20(3).html#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="file:///C:/Users/Francisco/Downloads/ai_studio_code%20(3).html#" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="file:///C:/Users/Francisco/Downloads/ai_studio_code%20(3).html#" title="TikTok"><i class="fab fa-tiktok"></i></a>
-        </div>
+        <p class="section-text">Usá el hashtag para subir tus fotos y videos</p>
+        <a href="https://www.instagram.com" class="button" target="_blank">VER EN INSTAGRAM</a>
     </div>
 
     <div class="footer">
-        <h2 class="italic">¡Los espero!</h2>
-        <p class="icon-placeholder" style="font-size: 3em;">⬇</p> <!-- Downward arrow -->
-        <h2 class="section-title">Ven a disfrutar!</h2>
-        <p class="section-text">¡Ven a disfrutar con nosotros! Esta fiesta pasa una sola vez... y vamos a ponerle todo el ambiente.</p>
-        <p class="small-text">Hecho con Amor</p>
+        <h2 class="section-title">¡Los espero!</h2>
+        <p class="section-text">Ven a disfrutar con nosotros, esta fiesta pasa una sola vez 💖</p>
+        <p class="section-text" style="font-size: 0.9em; color: #999;">Hecho con amor</p>
     </div>
 
-    <script>
-        // Set the date we're counting down to
-        const countDownDate = new Date("Nov 29, 2025 21:00:00").getTime();
-
-        // Update the count down every 1 second
-        const x = setInterval(function() {
-
-            // Get today's date and time
-            const now = new Date().getTime();
-
-            // Find the distance between now and the count down date
-            const distance = countDownDate - now;
-
-            // Time calculations for days, hours, minutes and seconds
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Output the result in elements with respective IDs
-            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
-            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
-
-            // If the count down is over, write some text
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("days").innerHTML = "00";
-                document.getElementById("hours").innerHTML = "00";
-                document.getElementById("minutes").innerHTML = "00";
-                document.getElementById("seconds").innerHTML = "00";
-                // You can change this to display a message like "¡La fiesta ha comenzado!"
-            }
-        }, 1000);
-    </script>
-
-
-</body></html>
+</body>
+</html>
