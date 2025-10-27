@@ -277,114 +277,11 @@
             <h1>Luz Fest</h1>
             <p>29. 11. 2025</p>
           <div class="" style="text-align:center;">
-<!-- CONTADOR REGRESIVO -->
-<div class="hero-countdown">
-  <div class="hero-countdown-item">
-      <span id="days">00</span>
-      <small>Días</small>
-  </div>
-  <div class="hero-countdown-item">
-      <span id="hours">00</span>
-      <small>Horas</small>
-  </div>
-  <div class="hero-countdown-item">
-      <span id="minutes">00</span>
-      <small>Minutos</small>
-  </div>
-  <div class="hero-countdown-item">
-      <span id="seconds">00</span>
-      <small>Segundos</small>
-  </div>
-</div>
-
-<style>
-.hero-countdown {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap; /* permite que los bloques bajen si no entran */
-    gap: 10px;
-    padding: 15px 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.25);
-    width: 95%;
-    max-width: 500px;
-    margin: 20px auto;
-    text-align: center;
-}
-
-.hero-countdown-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 65px; /* asegura que no se achiquen demasiado */
-}
-
-.hero-countdown-item span {
-    font-size: 2em;
-    font-weight: bold;
-}
-
-.hero-countdown-item small {
-    font-size: 0.85em;
-    color: #555;
-}
-
-/* 📱 Ajustes para celulares pequeños */
-@media (max-width: 480px) {
-    .hero-countdown {
-        gap: 8px;
-        padding: 10px;
-    }
-    .hero-countdown-item {
-        min-width: 60px;
-    }
-    .hero-countdown-item span {
-        font-size: 1.6em;
-    }
-    .hero-countdown-item small {
-        font-size: 0.75em;
-    }
-}
-
-/* 📱 Muy angosto (por ejemplo, celulares de 320px) */
-@media (max-width: 340px) {
-    .hero-countdown-item {
-        flex: 1 1 45%; /* 2 por fila */
-    }
-}
-</style>
-
-<script>
-function actualizarCuentaRegresiva() {
-    const fechaObjetivo = new Date("November 29, 2025 21:00:00").getTime();
-    const ahora = new Date().getTime();
-    const diferencia = fechaObjetivo - ahora;
-
-    if (diferencia <= 0) {
-        document.querySelector(".hero-countdown").innerHTML = "<h3>🎉 ¡Llegó el gran día! 🎉</h3>";
-        return;
-    }
-
-    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-    const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
-
-    document.getElementById("days").textContent = dias.toString().padStart(2, "0");
-    document.getElementById("hours").textContent = horas.toString().padStart(2, "0");
-    document.getElementById("minutes").textContent = minutos.toString().padStart(2, "0");
-    document.getElementById("seconds").textContent = segundos.toString().padStart(2, "0");
-}
-
-setInterval(actualizarCuentaRegresiva, 1000);
-actualizarCuentaRegresiva();
-</script>
-
+    <iframe 
+        src="https://policiadigitalchaco.com.ar/Prueba/counter" 
+        style="width:145%; height:125px; border:none; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.2);"
+        scrolling="no">
+    </iframe>
 </div>
 
         </div>
