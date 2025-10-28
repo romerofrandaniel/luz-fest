@@ -418,20 +418,125 @@ actualizarCuentaRegresiva();
     </div>
 
     <div class="section section-background-gray">
-        <div class="leaf-icon"></div>
-        <h2 class="section-title">Mi álbum</h2>
-        <div class="gallery">
-            <img src="./WhatsApp Image 2025-10-27 at 21.17.48.jpeg">
-            <img src="./WhatsApp Image 2025-10-27 at 21.17.48 (2).jpeg">
-            <img src="./WhatsApp Image 2025-10-27 at 21.17.48 (1).jpeg">
-            <img src="./WhatsApp Image 2025-10-27 at 21.17.47 (3).jpeg">
-            <img src="./WhatsApp Image 2025-10-27 at 21.17.47 (2).jpeg">
-            <img src="./WhatsApp Image 2025-10-27 at 21.17.47 (1).jpeg">
-            <img src="./WhatsApp Image 2025-10-27 at 21.17.47.jpeg">
-            <img src="./WhatsApp Image 2025-10-27 at 21.17.46.jpeg">
+    <div class="leaf-icon"></div>
+    <h2 class="section-title">Mi álbum</h2>
 
+    <div class="carousel-container">
+        <div class="carousel-slide">
+            <img src="./WhatsApp Image 2025-10-27 at 21.17.48.jpeg" alt="Foto 1">
+            <img src="./WhatsApp Image 2025-10-27 at 21.17.48 (2).jpeg" alt="Foto 2">
+            <img src="./WhatsApp Image 2025-10-27 at 21.17.48 (1).jpeg" alt="Foto 3">
+            <img src="./WhatsApp Image 2025-10-27 at 21.17.47 (3).jpeg" alt="Foto 4">
+            <img src="./WhatsApp Image 2025-10-27 at 21.17.47 (2).jpeg" alt="Foto 5">
+            <img src="./WhatsApp Image 2025-10-27 at 21.17.47 (1).jpeg" alt="Foto 6">
+            <img src="./WhatsApp Image 2025-10-27 at 21.17.47.jpeg" alt="Foto 7">
+            <img src="./WhatsApp Image 2025-10-27 at 21.17.46.jpeg" alt="Foto 8">
         </div>
+
+        <!-- Controles -->
+        <button class="carousel-btn prev">&#10094;</button>
+        <button class="carousel-btn next">&#10095;</button>
     </div>
+</div>
+
+<style>
+/* ===== CARRUSEL ===== */
+.section {
+    text-align: center;
+    padding: 40px 10px;
+    background: #f4f4f4;
+}
+
+.section-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.carousel-slide {
+    display: flex;
+    transition: transform 0.8s ease-in-out;
+    width: 100%;
+}
+
+.carousel-slide img {
+    width: 100%;
+    border-radius: 15px;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+/* Botones de navegación */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.4);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 24px;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(0,0,0,0.7);
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* Adaptable a móviles */
+@media (max-width: 600px) {
+    .carousel-container {
+        max-width: 95%;
+    }
+    .carousel-btn {
+        padding: 8px 12px;
+        font-size: 20px;
+    }
+}
+</style>
+
+<script>
+// ===== SCRIPT DEL CARRUSEL =====
+const slide = document.querySelector('.carousel-slide');
+const images = document.querySelectorAll('.carousel-slide img');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+
+let counter = 0;
+const total = images.length;
+
+function showSlide(index) {
+    if (index >= total) counter = 0;
+    else if (index < 0) counter = total - 1;
+    else counter = index;
+
+    slide.style.transform = `translateX(${-counter * 100}%)`;
+}
+
+// Botones manuales
+nextBtn.addEventListener('click', () => showSlide(counter + 1));
+prevBtn.addEventListener('click', () => showSlide(counter - 1));
+
+// Cambio automático cada 5 segundos
+setInterval(() => {
+    showSlide(counter + 1);
+}, 5000);
+</script>
+
 
     <div class="section">
         <h2 class="section-title">Playlist</h2>
