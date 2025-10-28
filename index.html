@@ -270,10 +270,29 @@
     </style>
 </head>
 <body>
-<audio autoplay loop>
+<audio id="musica" loop>
   <source src="YTDown.com_YouTube_YSY-A-GANAS-MEDIOS INSTRUMENTALES_P2phDHyP3EE_001_1080p.mp3" type="audio/mpeg">
-  Tu navegador no soporta el elemento de audio.
 </audio>
+
+<script>
+const audio = document.getElementById('musica');
+
+function activarAudio() {
+    audio.play().catch(() => {
+        console.log("Autoplay bloqueado");
+    });
+    // Quitamos los event listeners para que no se ejecute varias veces
+    window.removeEventListener('mousemove', activarAudio);
+    window.removeEventListener('scroll', activarAudio);
+    window.removeEventListener('touchstart', activarAudio);
+}
+
+// Escucha cualquier mínima interacción
+window.addEventListener('mousemove', activarAudio);
+window.addEventListener('scroll', activarAudio);
+window.addEventListener('touchstart', activarAudio);
+</script>
+
 
     <div class="hero-section">
         <div class="hero-content">
