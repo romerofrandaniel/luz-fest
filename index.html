@@ -687,51 +687,101 @@ setInterval(() => {
 
 
     /*   nuevo sacar foto y enviar por whasaapt   */
-    <div class="section" style="text-align:center;">
-    <img draggable="false" src="https://invitaciondigital.top/elegante-plata/_assets/video/55103399d562800773d69ef330544f1b.gif" width="120" alt="">
-    <h2 class="section-title">#Cumple15LuzFest</h2>
-    <p class="section-text">Usa el hashtag de mi fiesta para subir tus fotos y videos</p>
 
-    <!-- Botón para abrir cámara -->
-    <input type="file" accept="image/*" capture="camera" id="cameraInput" style="display:none;">
-    <button 
-        onclick="document.getElementById('cameraInput').click();" 
-        style="background: linear-gradient(135deg, #ff9a9e, #fecfef); color:#fff; border:none; padding:10px 20px; border-radius:10px; cursor:pointer;">
-        SACAR FOTO 📸
-    </button>
+<div class="section" style="text-align:center;">
+  <img draggable="false" src="https://invitaciondigital.top/elegante-plata/_assets/video/55103399d562800773d69ef330544f1b.gif" width="120" alt="">
+  <h2 class="section-title">#Cumple15LuzFest</h2>
+  <p class="section-text">Usa el hashtag de mi fiesta para subir tus fotos y videos</p>
 
-    <!-- Donde se muestra la foto -->
-    <div id="previewContainer" style="margin-top:15px; display:none;">
-        <img id="photoPreview" src="" width="200" style="border-radius:10px; border:2px solid #fff;">
-        <br><br>
+  <!-- Input para cámara / archivo -->
+  <input id="cameraInput" type="file" accept="image/*" capture="environment" style="display:none">
 
-        <!-- Botón para enviar por WhatsApp -->
-        <a id="sendButton" 
-           href="#" 
-           target="_blank"
-           style="background: linear-gradient(135deg, #ff9a9e, #fecfef); color:#fff; border:none; padding:10px 20px; border-radius:10px; text-decoration:none;">
-           ENVIAR POR WHATSAPP 💬
-        </a>
+  <!-- Botón para abrir cámara -->
+  <button id="openCameraBtn"
+          style="background: linear-gradient(135deg, #ff9a9e, #fecfef); color:#fff; border:none; padding:10px 18px; border-radius:10px; cursor:pointer;">
+    SACAR FOTO 📸
+  </button>
+
+  <!-- Preview -->
+  <div id="previewContainer" style="margin-top:15px; display:none;">
+    <img id="photoPreview" src="" width="260" style="border-radius:10px; border:2px solid #fff; display:block; margin:0 auto;">
+    <div style="margin-top:10px;">
+      <button id="shareBtn" style="background: linear-gradient(135deg, #ff9a9e, #fecfef); color:#fff; border:none; padding:10px 16px; border-radius:10px; cursor:pointer;">
+        COMPARTIR / ENVIAR POR WHATSAPP
+      </button>
     </div>
+    <p id="fallbackNote" style="font-size:13px;color:#666;margin-top:8px;display:none;">
+      Si la opción de WhatsApp no aparece, se abrirá un chat: copia la foto de arriba y pégala manualmente en el chat.
+    </p>
+  </div>
 </div>
 
 <script>
-document.getElementById('cameraInput').addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById('photoPreview').src = e.target.result;
-            document.getElementById('previewContainer').style.display = 'block';
+  const cameraInput = document.getElementById('cameraInput');
+  const openCameraBtn = document.getElementById('openCameraBtn');
+  const previewContainer = document.getElementById('previewContainer');
+  const photoPreview = document.getElementById('photoPreview');
+  const shareBtn = document.getElementById('shareBtn');
+  const fallbackNote = document.getElementById('fallbackNote');
 
-            // Crea un enlace de WhatsApp
-            const message = encodeURIComponent("¡Te envío una foto del #Cumple15LuzFest! 🎉");
-            const whatsappURL = `https://wa.me/5493624690820?text=${message}`;
-            document.getElementById('sendButton').href = whatsappURL;
-        };
-        reader.readAsDataURL(file);
+  let currentFile = null; // guardamos el File capturado
+
+  // Función para abrir el input de la cámara/archivo
+  openCameraBtn.addEventListener('click', () => {
+    cameraInput.value = ""; // reset input value so 'change' event fires even if the same file is selected (useful for "sacar otra foto")
+    cameraInput.click();
+  });
+
+  // Evento cuando se captura la imagen
+  cameraInput.addEventListener('change', async (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    currentFile = file;
+
+    // Mostrar preview
+    const objectUrl = URL.createObjectURL(file);
+    photoPreview.src = objectUrl;
+    previewContainer.style.display = 'block';
+    fallbackNote.style.display = 'none'; // Ocultar nota de fallback si se saca una nueva foto
+  });
+
+  // Evento para compartir la imagen
+  shareBtn.addEventListener('click', async () => {
+    if (!currentFile) return alert('Primero sacá o seleccioná una foto.');
+
+    const text = '¡Te envío una foto del #Cumple15LuzFest! 🎉';
+    const fallbackMessage = 'Si la opción de WhatsApp no aparece, se abrirá un chat: copia la foto de arriba y pégala manualmente en el chat.';
+
+    // 1) Intentar Web Share API (con archivos) — funciona en móviles compatibles (HTTPS)
+    if (navigator.share && navigator.canShare({ files: [currentFile] })) {
+      try {
+        await navigator.share({
+          files: [currentFile],
+          title: 'Mi foto del #Cumple15LuzFest',
+          text: text,
+        });
+        // Si se comparte correctamente o el usuario cancela, no hacemos nada más.
+        return; 
+      } catch (err) {
+        console.error('Error share API:', err);
+        // Si falla (ej. error de permisos), seguimos al fallback.
+      }
     }
-});
+
+    // 2) Fallback: Si Web Share API no está disponible o falló:
+    
+    // Mostrar la nota para que el usuario sepa qué hacer
+    fallbackNote.style.display = 'block';
+
+    // Abrir WhatsApp con mensaje prellenado
+    // Nota: Es imposible adjuntar la imagen mediante un enlace wa.me o una URL simple por razones de seguridad.
+    const waNumber = '5493624690820'; 
+    // Usamos \\n para saltos de línea en la URL
+    const waMessage = encodeURIComponent(text + '\n\n' + fallbackMessage); 
+    const waUrl = `https://wa.me/${waNumber}?text=${waMessage}`;
+    
+    window.open(waUrl, '_blank');
+  });
 </script>
 
 
