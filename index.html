@@ -682,12 +682,61 @@ setInterval(() => {
    style="background: linear-gradient(135deg, #ff9a9e, #fecfef); color: #fff; border: none;">
    VER EN INSTAGRAM
 </a>
+</div>
 
 
+
+    /*   nuevo sacar foto y enviar por whasaapt   */
+    <div class="section" style="text-align:center;">
+    <img draggable="false" src="https://invitaciondigital.top/elegante-plata/_assets/video/55103399d562800773d69ef330544f1b.gif" width="120" alt="">
+    <h2 class="section-title">#Cumple15LuzFest</h2>
+    <p class="section-text">Usa el hashtag de mi fiesta para subir tus fotos y videos</p>
+
+    <!-- Botón para abrir cámara -->
+    <input type="file" accept="image/*" capture="camera" id="cameraInput" style="display:none;">
+    <button 
+        onclick="document.getElementById('cameraInput').click();" 
+        style="background: linear-gradient(135deg, #ff9a9e, #fecfef); color:#fff; border:none; padding:10px 20px; border-radius:10px; cursor:pointer;">
+        SACAR FOTO 📸
+    </button>
+
+    <!-- Donde se muestra la foto -->
+    <div id="previewContainer" style="margin-top:15px; display:none;">
+        <img id="photoPreview" src="" width="200" style="border-radius:10px; border:2px solid #fff;">
+        <br><br>
+
+        <!-- Botón para enviar por WhatsApp -->
+        <a id="sendButton" 
+           href="#" 
+           target="_blank"
+           style="background: linear-gradient(135deg, #ff9a9e, #fecfef); color:#fff; border:none; padding:10px 20px; border-radius:10px; text-decoration:none;">
+           ENVIAR POR WHATSAPP 💬
+        </a>
     </div>
+</div>
+
+<script>
+document.getElementById('cameraInput').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('photoPreview').src = e.target.result;
+            document.getElementById('previewContainer').style.display = 'block';
+
+            // Crea un enlace de WhatsApp
+            const message = encodeURIComponent("¡Te envío una foto del #Cumple15LuzFest! 🎉");
+            const whatsappURL = `https://wa.me/5493624690820?text=${message}`;
+            document.getElementById('sendButton').href = whatsappURL;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+</script>
+
 
     
-
+ /* fin de enviar foto  */
     <div class="footer">
         <h2 class="italic">¡Los espero!</h2>
         <p class="icon-placeholder" style="font-size: 3em;">⬇</p> <!-- Downward arrow -->
