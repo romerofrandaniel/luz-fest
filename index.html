@@ -273,7 +273,7 @@
 </head>
 <body>
 
-/* inicio del  Body  */
+/* siiiiiii del  Body  */
 <!-- Pantalla de presentación -->
 <!-- Pantalla de presentación -->
 <div id="pantallaInicio" style="
@@ -284,43 +284,37 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
-">
-    <!-- Imagen que funciona como botón -->
+    z-index: 9999;">
+    
     <img src="presentacion.jpg" alt="Bienvenida" id="imagenInicio"
          style="max-width: 100%; max-height: 100%; object-fit: cover; cursor: pointer;">
 </div>
 
 <!-- Música -->
 <audio id="musica" loop>
-  <source src="./música.mp3" type="audio/mpeg">
+  <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    const pantallaInicio = document.getElementById("pantallaInicio");
-    const imagenInicio = document.getElementById("imagenInicio");
-    const musica = document.getElementById("musica");
+  const pantallaInicio = document.getElementById("pantallaInicio");
+  const imagenInicio = document.getElementById("imagenInicio");
+  const musica = document.getElementById("musica");
 
-    imagenInicio.addEventListener("click", () => {
-        // Reproduce la música
-        musica.play().catch(err => console.log("Reproducción bloqueada:", err));
+  imagenInicio.addEventListener("click", () => {
+      musica.play().then(() => {
+          console.log("🎶 Música iniciada correctamente");
+      }).catch(err => {
+          console.log("⚠️ Error al reproducir:", err);
+      });
 
-        // Efecto suave al desaparecer la pantalla
-        pantallaInicio.style.transition = "opacity 1s ease";
-        pantallaInicio.style.opacity = "0";
-
-        // Después de la animación, oculta completamente
-        setTimeout(() => {
-            pantallaInicio.style.display = "none";
-        }, 1000);
-    });
+      // Desvanece la pantalla de inicio
+      pantallaInicio.style.transition = "opacity 1s ease";
+      pantallaInicio.style.opacity = "0";
+      setTimeout(() => pantallaInicio.style.display = "none", 1000);
+  });
 });
 </script>
-
-<audio id="musica" loop controls>
-  <source src="musica.mp3" type="audio/mpeg">
-</audio>
 
 
   /* Comienzo del  Body  */  
