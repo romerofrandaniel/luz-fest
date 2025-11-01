@@ -275,6 +275,7 @@
 
 /* Comienzo del  Body  */
 <!-- Pantalla de presentación -->
+<!-- Pantalla de presentación -->
 <div id="pantallaInicio" style="
     position: fixed;
     top: 0; left: 0;
@@ -285,7 +286,7 @@
     align-items: center;
     z-index: 9999;
 ">
-    <img src="presentacion.jpg" alt="Bienvenida" id="imagenInicio" 
+    <img src="presentacion.jpg" alt="Bienvenida" id="imagenInicio"
          style="max-width: 100%; max-height: 100%; object-fit: cover; cursor: pointer;">
 </div>
 
@@ -751,21 +752,26 @@ setInterval(() => {
     </script>
 
 /* Fin del  Body  */
-    <script>
-document.getElementById("imagenInicio").addEventListener("click", function() {
-    const pantalla = document.getElementById("pantallaInicio");
-    const musica = document.getElementById("musica");
+<script>
+const pantallaInicio = document.getElementById('pantallaInicio');
+const imagenInicio = document.getElementById('imagenInicio');
+const musica = document.getElementById('musica');
 
-    // Oculta la pantalla de inicio con una pequeña animación
-    pantalla.style.transition = "opacity 1s ease";
-    pantalla.style.opacity = "0";
-    setTimeout(() => {
-        pantalla.style.display = "none";
-    }, 1000);
+// Función para reproducir la música y ocultar la pantalla de inicio
+function iniciarMusica() {
+    musica.play().then(() => {
+        console.log("🎵 Música iniciada correctamente");
+        pantallaInicio.style.display = "none";
+    }).catch((error) => {
+        console.warn("⚠️ No se pudo reproducir automáticamente. El usuario debe interactuar:", error);
+        // Mostramos mensaje si falla
+        imagenInicio.insertAdjacentHTML('afterend', '<p style="color:white;position:absolute;bottom:20px;">Toca la pantalla para iniciar la música 🎶</p>');
+    });
+}
 
-    // Reproduce la música al hacer clic
-    musica.play().catch(() => console.log("El usuario bloqueó la reproducción automática"));
-});
+// Escuchar clic o toque en la imagen
+imagenInicio.addEventListener('click', iniciarMusica);
+imagenInicio.addEventListener('touchstart', iniciarMusica);
 </script>
 
 /* Fin del  Body  */
