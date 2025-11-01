@@ -272,6 +272,27 @@
     </style>
 </head>
 <body>
+
+/* Comienzo del  Body  */
+<!-- Pantalla de presentación -->
+<div id="pantallaInicio" style="
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+">
+    <img src="presentacion.jpg" alt="Bienvenida" id="imagenInicio" 
+         style="max-width: 100%; max-height: 100%; object-fit: cover; cursor: pointer;">
+</div>
+
+
+  /* Comienzo del  Body  */  
+
+    
 <audio id="musica" loop>
   <source src="./música.mp3" type="audio/mpeg">
 </audio>
@@ -729,5 +750,23 @@ setInterval(() => {
         }, 1000);
     </script>
 
+/* Fin del  Body  */
+    <script>
+document.getElementById("imagenInicio").addEventListener("click", function() {
+    const pantalla = document.getElementById("pantallaInicio");
+    const musica = document.getElementById("musica");
 
+    // Oculta la pantalla de inicio con una pequeña animación
+    pantalla.style.transition = "opacity 1s ease";
+    pantalla.style.opacity = "0";
+    setTimeout(() => {
+        pantalla.style.display = "none";
+    }, 1000);
+
+    // Reproduce la música al hacer clic
+    musica.play().catch(() => console.log("El usuario bloqueó la reproducción automática"));
+});
+</script>
+
+/* Fin del  Body  */
 </body></html>
