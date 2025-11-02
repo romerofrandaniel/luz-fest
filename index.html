@@ -276,7 +276,6 @@
 
 <!--siiiiiii del  Body Pantalla de presentación -->
 <!-- Pantalla de presentación -->
-<!-- Pantalla de presentación -->
 <div id="pantallaInicio" style="
     position: fixed;
     top: 0; left: 0;
@@ -287,10 +286,10 @@
     align-items: center;
     z-index: 9999;">
     
-  <!-- GIF animado -->
-  <img src="./InicioTarjeta.gif" alt="Bienvenida" id="imagenInicio"
-       style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;">
+<img src="presentacion4.jpg" alt="Bienvenida" id="imagenInicio"
+         style="max-width: 100%; max-height: 100%; object-fit: cover; cursor: pointer;">
 </div>
+
 
 <!-- Música -->
 <audio id="musica" loop>
@@ -310,13 +309,13 @@ document.addEventListener("DOMContentLoaded", () => {
           console.log("⚠️ Error al reproducir:", err);
       });
 
+      // Desvanece la pantalla de inicio
       pantallaInicio.style.transition = "opacity 1s ease";
       pantallaInicio.style.opacity = "0";
       setTimeout(() => pantallaInicio.style.display = "none", 1000);
   });
 });
 </script>
-
 
 
 
